@@ -42,7 +42,7 @@ chmod 644 /etc/elasticsearch/certs/*
 systemctl daemon-reload
 systemctl enable elasticsearch
 systemctl start elasticsearch
-systemctl status elasticsearch -q
+systemctl status elasticsearch
 export JAVA_HOME=/usr/share/elasticsearch/jdk/ && /usr/share/elasticsearch/plugins/opendistro_security/tools/securityadmin.sh -cd /usr/share/elasticsearch/plugins/opendistro_security/securityconfig/ -nhnv -cacert /etc/elasticsearch/certs/root-ca.pem -cert /etc/elasticsearch/certs/admin.pem -key /etc/elasticsearch/certs/admin-key.pem
 curl -XGET https://localhost:9200 -u admin:admin -k
 
@@ -75,6 +75,7 @@ mkdir /etc/kibana/certs
 cp ~/certs/root-ca.pem /etc/kibana/certs/
 mv ~/certs/kibana* /etc/kibana/certs/
 chmod 644 /etc/kibana/certs/*
+chown kibana:kibana /etc/kibana/certs/*
 
 setcap 'cap_net_bind_service=+ep' /usr/share/kibana/node/bin/node
 systemctl daemon-reload
