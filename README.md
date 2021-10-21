@@ -64,7 +64,7 @@ setting configure ossec.conf to /var/ossec/etc/ossec.conf
   <vulnerability-detector>
     <enabled>yes</enabled>
     <interval>1m</interval>
-    <ignore_time>1h</ignore_time>
+    <ignore_time>5m</ignore_time>
     <run_on_start>yes</run_on_start>
 
     <!-- Ubuntu OS vulnerabilities --> 
@@ -74,7 +74,7 @@ setting configure ossec.conf to /var/ossec/etc/ossec.conf
       <os>xenial</os>
       <os>bionic</os>
       <os>focal</os>
-      <update_interval>1h</update_interval>
+      <update_interval>1m</update_interval>
     </provider>
 
     <!-- Debian OS vulnerabilities -->  
@@ -82,7 +82,7 @@ setting configure ossec.conf to /var/ossec/etc/ossec.conf
       <enabled>yes</enabled>
       <os>stretch</os>
       <os>buster</os>
-      <update_interval>1h</update_interval>
+      <update_interval>1m</update_interval>
     </provider>
 
     <!-- RedHat OS vulnerabilities -->  
@@ -92,13 +92,23 @@ setting configure ossec.conf to /var/ossec/etc/ossec.conf
       <os>6</os>
       <os>7</os>
       <os>8</os>
-      <update_interval>1h</update_interval>
+      <update_interval>1m</update_interval>
     </provider>
 
     <!-- Windows OS vulnerabilities -->
     <provider name="msu">
       <enabled>yes</enabled>
-      <update_interval>1h</update_interval>
+      <update_interval>1m</update_interval>
     </provider>
+
+    <!-- Aggregate vulnerabilities -->
+    <provider name="nvd">
+      <enabled>yes</enabled>
+      <update_from_year>2021</update_from_year>
+      <update_interval>1m</update_interval>
+    </provider>
+
+  </vulnerability-detector>
+
 ```
 and restart wazuh-manager (systemctl restart wazuh-manager)
