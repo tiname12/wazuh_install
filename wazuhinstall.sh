@@ -1,5 +1,6 @@
 #!/bin/bash
-# Requirements
+echo "Requirements"
+apt-get update && apt-get upgrade -y
 sudo apt install curl apt-transport-https unzip wget libcap2-bin software-properties-common lsb-release -y
 sudo apt install gpgv gpgsm gnupg-l10n gnupg dirmngr -y
 export JAVA_HOME=/usr/ && apt install openjdk-11-jdk -y
@@ -10,7 +11,7 @@ echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sou
 sudo apt-get update -y
 sleep 10
 
-# Wazuh Manager
+echo "Wazuh Manager"
 sudo apt-get install wazuh-manager -y
 systemctl daemon-reload
 systemctl enable wazuh-manager
@@ -20,7 +21,7 @@ sleep 10
 systemctl status wazuh-manager
 sleep 3
 
-# Elasticsearch
+echo "Elasticsearch"
 sudo apt install elasticsearch-oss opendistroforelasticsearch -y
 curl -so /etc/elasticsearch/elasticsearch.yml https://raw.githubusercontent.com/wazuh/wazuh-documentation/4.2/resources/open-distro/elasticsearch/7.x/elasticsearch_all_in_one.yml
 curl -so /usr/share/elasticsearch/plugins/opendistro_security/securityconfig/roles.yml https://raw.githubusercontent.com/wazuh/wazuh-documentation/4.2/resources/open-distro/elasticsearch/roles/roles.yml
@@ -28,8 +29,8 @@ curl -so /usr/share/elasticsearch/plugins/opendistro_security/securityconfig/rol
 curl -so /usr/share/elasticsearch/plugins/opendistro_security/securityconfig/internal_users.yml https://raw.githubusercontent.com/wazuh/wazuh-documentation/4.2/resources/open-distro/elasticsearch/roles/internal_users.yml
 rm /etc/elasticsearch/esnode-key.pem /etc/elasticsearch/esnode.pem /etc/elasticsearch/kirk-key.pem /etc/elasticsearch/kirk.pem /etc/elasticsearch/root-ca.pem -f
 cd ~
-curl -so ~/wazuh-cert-tool.sh https://packages.wazuh.com/resources/4.1/open-distro/tools/certificate-utility/wazuh-cert-tool.sh
-curl -so ~/instances.yml https://packages.wazuh.com/resources/4.1/open-distro/tools/certificate-utility/instances_aio.yml
+curl -so ~/wazuh-cert-tool.sh https://packages.wazuh.com/resources/4.2/open-distro/tools/certificate-utility/wazuh-cert-tool.sh
+curl -so ~/instances.yml https://packages.wazuh.com/resources/4.2/open-distro/tools/certificate-utility/instances_aio.yml
 bash ~/wazuh-cert-tool.sh
 mkdir /etc/elasticsearch/certs/
 mv ~/certs/admin* /etc/elasticsearch/certs/
@@ -43,7 +44,7 @@ systemctl status elasticsearch -q
 export JAVA_HOME=/usr/share/elasticsearch/jdk/ && /usr/share/elasticsearch/plugins/opendistro_security/tools/securityadmin.sh -cd /usr/share/elasticsearch/plugins/opendistro_security/securityconfig/ -nhnv -cacert /etc/elasticsearch/certs/root-ca.pem -cert /etc/elasticsearch/certs/admin.pem -key /etc/elasticsearch/certs/admin-key.pem
 curl -XGET https://localhost:9200 -u admin:admin -k
 
-# Filebeat
+echo "Filebeat"
 apt-get install filebeat -y
 sleep 10
 curl -so /etc/filebeat/filebeat.yml https://raw.githubusercontent.com/wazuh/wazuh-documentation/4.2/resources/open-distro/filebeat/7.x/filebeat_all_in_one.yml
@@ -58,7 +59,7 @@ systemctl enable filebeat
 systemctl start filebeat
 systemctl status filebeat -q
 
-# Kibana
+echo "Kibana"
 apt-get install opendistroforelasticsearch-kibana -y
 sleep 10
 curl -so /etc/kibana/kibana.yml https://raw.githubusercontent.com/wazuh/wazuh-documentation/4.1/resources/open-distro/kibana/7.x/kibana_all_in_one.yml
