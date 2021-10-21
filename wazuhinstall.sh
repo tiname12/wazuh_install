@@ -34,6 +34,8 @@ curl -so ~/instances.yml https://packages.wazuh.com/resources/4.2/open-distro/to
 bash ~/wazuh-cert-tool.sh
 mkdir /etc/elasticsearch/certs/
 mv ~/certs/admin* /etc/elasticsearch/certs/
+mv ~/certs/elasticsearch-key.pem /etc/elasticsearch/certs/
+mv ~/certs/elasticsearch.pem /etc/elasticsearch/certs/
 cp ~/certs/root-ca* /etc/elasticsearch/certs/
 chown -R root:elasticsearch /etc/elasticsearch/certs/*
 chmod 644 /etc/elasticsearch/certs/*
