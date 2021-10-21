@@ -78,3 +78,4 @@ systemctl daemon-reload
 systemctl enable kibana
 systemctl start kibana
 systemctl status kibana -q
+echo "DONE INSTALL"
