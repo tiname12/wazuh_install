@@ -1,10 +1,10 @@
 # wazuh_install
 
-clone wazuh_install and mv as is root
+clone wazuh_install and run as is root
 
 chmod +x wazuhinstall.sh
 
-run ./wazuhinstall.sh
+./wazuhinstall.sh
 
 changes elasticsearch.yml
 
@@ -37,7 +37,13 @@ node.max_local_storage_nodes: 3
 path.data: /var/lib/elasticsearch
 path.logs: /var/log/elasticsearch
 ```
+fix error elasticsearch to status kibana
+![image](https://user-images.githubusercontent.com/85473544/138298168-6042d159-64f3-4a26-9cff-a3b0d51ae0be.png)
 
+run code down here
+```
+export JAVA_HOME=/usr/share/elasticsearch/jdk/ && /usr/share/elasticsearch/plugins/opendistro_security/tools/securityadmin.sh opendistro_security/securityconfig/ -nhnv -cacert /etc/elasticsearch/certs/root-ca.pem -cert /etc/elasticsearch/certs/admin.pem -key /etc/elasticsearch/certs/admin-key.pem
+```
 ```
 testing 
 URL: https://<wazuh_server_ip>
