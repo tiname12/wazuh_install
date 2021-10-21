@@ -68,7 +68,8 @@ curl -so /etc/kibana/kibana.yml https://raw.githubusercontent.com/wazuh/wazuh-do
 mkdir /usr/share/kibana/data
 chown -R kibana:kibana /usr/share/kibana/data
 cd /usr/share/kibana
-sudo -u kibana /usr/share/kibana/bin/kibana-plugin install https://packages.wazuh.com/4.x/ui/kibana/wazuh_kibana-4.1.2_7.10.0-1.zip
+cd /usr/share/kibana
+sudo -u kibana /usr/share/kibana/bin/kibana-plugin install https://packages.wazuh.com/4.x/ui/kibana/wazuh_kibana-4.2.4_7.10.2-1.zip
 ###########################
 cd ~
 mkdir /etc/kibana/certs
