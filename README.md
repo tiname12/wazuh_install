@@ -101,3 +101,4 @@ setting configure ossec.conf to /var/ossec/etc/ossec.conf
       <update_interval>1h</update_interval>
     </provider>
 ```
+and restart wazuh-manager (systemctl restart wazuh-manager)
