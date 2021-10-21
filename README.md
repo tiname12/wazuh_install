@@ -58,3 +58,46 @@ URL: https://<wazuh_server_ip>
 user: admin
 password: admin
 ```
+setting configure ossec.conf to /var/ossec/etc/ossec.conf
+
+```
+  <vulnerability-detector>
+    <enabled>yes</enabled>
+    <interval>1m</interval>
+    <ignore_time>1h</ignore_time>
+    <run_on_start>yes</run_on_start>
+
+    <!-- Ubuntu OS vulnerabilities --> 
+    <provider name="canonical">
+      <enabled>yes</enabled>
+      <os>trusty</os>
+      <os>xenial</os>
+      <os>bionic</os>
+      <os>focal</os>
+      <update_interval>1h</update_interval>
+    </provider>
+
+    <!-- Debian OS vulnerabilities -->  
+    <provider name="debian">
+      <enabled>yes</enabled>
+      <os>stretch</os>
+      <os>buster</os>
+      <update_interval>1h</update_interval>
+    </provider>
+
+    <!-- RedHat OS vulnerabilities -->  
+    <provider name="redhat">
+      <enabled>yes</enabled>
+      <os>5</os>
+      <os>6</os>
+      <os>7</os>
+      <os>8</os>
+      <update_interval>1h</update_interval>
+    </provider>
+
+    <!-- Windows OS vulnerabilities -->
+    <provider name="msu">
+      <enabled>yes</enabled>
+      <update_interval>1h</update_interval>
+    </provider>
+```
