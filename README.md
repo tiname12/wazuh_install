@@ -44,6 +44,14 @@ run code down here
 ```
 export JAVA_HOME=/usr/share/elasticsearch/jdk/ && /usr/share/elasticsearch/plugins/opendistro_security/tools/securityadmin.sh opendistro_security/securityconfig/ -nhnv -cacert /etc/elasticsearch/certs/root-ca.pem -cert /etc/elasticsearch/certs/admin.pem -key /etc/elasticsearch/certs/admin-key.pem
 ```
+fix application not found
+![image](https://user-images.githubusercontent.com/85473544/138301180-aacc01e7-bcda-4451-8da2-f8713405be5d.png)
+
+run code down here
+```
+sudo -u kibana /usr/share/kibana/bin/kibana-plugin install https://packages.wazuh.com/4.x/ui/kibana/wazuh_kibana-4.2.4_7.10.2-1.zip
+```
+
 ```
 testing 
 URL: https://<wazuh_server_ip>
