@@ -112,3 +112,15 @@ setting configure ossec.conf to /var/ossec/etc/ossec.conf
 
 ```
 and restart wazuh-manager (systemctl restart wazuh-manager)
+
+
+# WAZUH_AGENT LINUX
+
+```
+curl -so wazuh-agent-4.2.4.deb https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.2.4-1_amd64.deb && sudo WAZUH_MANAGER='ip wazuh master' WAZUH_AGENT_GROUP='default' dpkg -i ./wazuh-agent-4.2.4.deb
+
+
+sudo systemctl daemon-reload
+sudo systemctl enable wazuh-agent
+sudo systemctl start wazuh-agent
+```
